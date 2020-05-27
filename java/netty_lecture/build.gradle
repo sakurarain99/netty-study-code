@@ -36,7 +36,7 @@ dependencies {
 
 //构建protobuf插件配置
 protobuf {
-    //输出目录的根目录名，生成的java文件的位置
+    //输出目录的根目录名，生成的java文件的位置，会在指定的目录下的main下生成
     generateProtoTasks.generatedFilesBaseDir = "$projectDir/src"
 
     protoc {
