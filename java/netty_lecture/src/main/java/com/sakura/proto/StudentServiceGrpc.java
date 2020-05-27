@@ -123,6 +123,37 @@ public final class StudentServiceGrpc {
     return getGetStudentsWrapperByAgesMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.sakura.proto.StreamRequest,
+      com.sakura.proto.StreamResponse> getBiTalkMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "BiTalk",
+      requestType = com.sakura.proto.StreamRequest.class,
+      responseType = com.sakura.proto.StreamResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+  public static io.grpc.MethodDescriptor<com.sakura.proto.StreamRequest,
+      com.sakura.proto.StreamResponse> getBiTalkMethod() {
+    io.grpc.MethodDescriptor<com.sakura.proto.StreamRequest, com.sakura.proto.StreamResponse> getBiTalkMethod;
+    if ((getBiTalkMethod = StudentServiceGrpc.getBiTalkMethod) == null) {
+      synchronized (StudentServiceGrpc.class) {
+        if ((getBiTalkMethod = StudentServiceGrpc.getBiTalkMethod) == null) {
+          StudentServiceGrpc.getBiTalkMethod = getBiTalkMethod =
+              io.grpc.MethodDescriptor.<com.sakura.proto.StreamRequest, com.sakura.proto.StreamResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "BiTalk"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.sakura.proto.StreamRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.sakura.proto.StreamResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new StudentServiceMethodDescriptorSupplier("BiTalk"))
+              .build();
+        }
+      }
+    }
+    return getBiTalkMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -176,7 +207,7 @@ public final class StudentServiceGrpc {
 
     /**
      * <pre>
-     *客户端发出一个普通的请求，服务器的返回一个普通的响应
+     *1.客户端发出一个普通的请求，服务器的返回一个普通的响应
      * </pre>
      */
     public void getRealNameByUsername(com.sakura.proto.MyRequest request,
@@ -186,9 +217,9 @@ public final class StudentServiceGrpc {
 
     /**
      * <pre>
-     *根据学生的年龄获取与这个年龄相等的学生对象，服务器的以流的形式返回
      *grpc的请求以及响应不能是基本数据类型，必须是一个message类型，不管请求里有几个参数
-     *  他必须是你定义的一个message类型的
+     *他必须是你定义的一个message类型的
+     *2.根据学生的年龄获取与这个年龄相等的学生对象客户端发生一个普通的请求，服务器的以流的形式返回
      * </pre>
      */
     public void getStudentsByAge(com.sakura.proto.StudentRequest request,
@@ -198,12 +229,22 @@ public final class StudentServiceGrpc {
 
     /**
      * <pre>
-     *请求一个StudentRequest服务器会返回一个StudentResponseList
+     *3.以流式的方式请求一个StudentRequest服务器会返回一个StudentResponseList
      * </pre>
      */
     public io.grpc.stub.StreamObserver<com.sakura.proto.StudentRequest> getStudentsWrapperByAges(
         io.grpc.stub.StreamObserver<com.sakura.proto.StudentResponseList> responseObserver) {
       return asyncUnimplementedStreamingCall(getGetStudentsWrapperByAgesMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *4.客户源与服务端都以流式的方式，双向的数据流传递
+     * </pre>
+     */
+    public io.grpc.stub.StreamObserver<com.sakura.proto.StreamRequest> biTalk(
+        io.grpc.stub.StreamObserver<com.sakura.proto.StreamResponse> responseObserver) {
+      return asyncUnimplementedStreamingCall(getBiTalkMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -229,6 +270,13 @@ public final class StudentServiceGrpc {
                 com.sakura.proto.StudentRequest,
                 com.sakura.proto.StudentResponseList>(
                   this, METHODID_GET_STUDENTS_WRAPPER_BY_AGES)))
+          .addMethod(
+            getBiTalkMethod(),
+            asyncBidiStreamingCall(
+              new MethodHandlers<
+                com.sakura.proto.StreamRequest,
+                com.sakura.proto.StreamResponse>(
+                  this, METHODID_BI_TALK)))
           .build();
     }
   }
@@ -252,7 +300,7 @@ public final class StudentServiceGrpc {
 
     /**
      * <pre>
-     *客户端发出一个普通的请求，服务器的返回一个普通的响应
+     *1.客户端发出一个普通的请求，服务器的返回一个普通的响应
      * </pre>
      */
     public void getRealNameByUsername(com.sakura.proto.MyRequest request,
@@ -263,9 +311,9 @@ public final class StudentServiceGrpc {
 
     /**
      * <pre>
-     *根据学生的年龄获取与这个年龄相等的学生对象，服务器的以流的形式返回
      *grpc的请求以及响应不能是基本数据类型，必须是一个message类型，不管请求里有几个参数
-     *  他必须是你定义的一个message类型的
+     *他必须是你定义的一个message类型的
+     *2.根据学生的年龄获取与这个年龄相等的学生对象客户端发生一个普通的请求，服务器的以流的形式返回
      * </pre>
      */
     public void getStudentsByAge(com.sakura.proto.StudentRequest request,
@@ -276,13 +324,24 @@ public final class StudentServiceGrpc {
 
     /**
      * <pre>
-     *请求一个StudentRequest服务器会返回一个StudentResponseList
+     *3.以流式的方式请求一个StudentRequest服务器会返回一个StudentResponseList
      * </pre>
      */
     public io.grpc.stub.StreamObserver<com.sakura.proto.StudentRequest> getStudentsWrapperByAges(
         io.grpc.stub.StreamObserver<com.sakura.proto.StudentResponseList> responseObserver) {
       return asyncClientStreamingCall(
           getChannel().newCall(getGetStudentsWrapperByAgesMethod(), getCallOptions()), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *4.客户源与服务端都以流式的方式，双向的数据流传递
+     * </pre>
+     */
+    public io.grpc.stub.StreamObserver<com.sakura.proto.StreamRequest> biTalk(
+        io.grpc.stub.StreamObserver<com.sakura.proto.StreamResponse> responseObserver) {
+      return asyncBidiStreamingCall(
+          getChannel().newCall(getBiTalkMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -305,7 +364,7 @@ public final class StudentServiceGrpc {
 
     /**
      * <pre>
-     *客户端发出一个普通的请求，服务器的返回一个普通的响应
+     *1.客户端发出一个普通的请求，服务器的返回一个普通的响应
      * </pre>
      */
     public com.sakura.proto.MyResponse getRealNameByUsername(com.sakura.proto.MyRequest request) {
@@ -315,9 +374,9 @@ public final class StudentServiceGrpc {
 
     /**
      * <pre>
-     *根据学生的年龄获取与这个年龄相等的学生对象，服务器的以流的形式返回
      *grpc的请求以及响应不能是基本数据类型，必须是一个message类型，不管请求里有几个参数
-     *  他必须是你定义的一个message类型的
+     *他必须是你定义的一个message类型的
+     *2.根据学生的年龄获取与这个年龄相等的学生对象客户端发生一个普通的请求，服务器的以流的形式返回
      * </pre>
      */
     public java.util.Iterator<com.sakura.proto.StudentResponse> getStudentsByAge(
@@ -346,7 +405,7 @@ public final class StudentServiceGrpc {
 
     /**
      * <pre>
-     *客户端发出一个普通的请求，服务器的返回一个普通的响应
+     *1.客户端发出一个普通的请求，服务器的返回一个普通的响应
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.sakura.proto.MyResponse> getRealNameByUsername(
@@ -359,6 +418,7 @@ public final class StudentServiceGrpc {
   private static final int METHODID_GET_REAL_NAME_BY_USERNAME = 0;
   private static final int METHODID_GET_STUDENTS_BY_AGE = 1;
   private static final int METHODID_GET_STUDENTS_WRAPPER_BY_AGES = 2;
+  private static final int METHODID_BI_TALK = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -398,6 +458,9 @@ public final class StudentServiceGrpc {
         case METHODID_GET_STUDENTS_WRAPPER_BY_AGES:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.getStudentsWrapperByAges(
               (io.grpc.stub.StreamObserver<com.sakura.proto.StudentResponseList>) responseObserver);
+        case METHODID_BI_TALK:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.biTalk(
+              (io.grpc.stub.StreamObserver<com.sakura.proto.StreamResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -452,6 +515,7 @@ public final class StudentServiceGrpc {
               .addMethod(getGetRealNameByUsernameMethod())
               .addMethod(getGetStudentsByAgeMethod())
               .addMethod(getGetStudentsWrapperByAgesMethod())
+              .addMethod(getBiTalkMethod())
               .build();
         }
       }
