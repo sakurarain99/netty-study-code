@@ -1,0 +1,55 @@
+syntax = "proto2";
+
+package com.sakura.protobuf; //包路径，自定义
+
+option optimize_for = SPEED; //SPEED加快解析速度，默认就是SPEED
+option java_package = "com.sakura.netty.sixtheample"; //包路径，自定义，比package优先级高
+//如果java_package存在则默认使用java_package的配置，如果使用java_package就必须要指定package
+//以免在生成java以外的语言时，不存在java_package参数，造成命名秘密空间问题
+option java_outer_classname = "DataInfo"; //生成的外部类的名称，自定义
+
+/*
+    格式：
+       修饰符 数据类型 属性名 = 唯一标记数;
+    修饰符：
+       required 必须的，必须存在，必须赋值
+       optional 可选的，可以不使用
+    数据类型：
+       包括 bool，int32，float，double，和string
+    唯一标记数：
+       标签编号1-15与较高的编号相比，编码所需的字节减少了一个字节，因此，
+          为了进行优化，您可以决定将这些标签用于常用或重复的元素
+*/
+
+message Message{
+    enum DataType{
+        PersonType = 1;
+        DogType = 2;
+        CatType = 3;
+    }
+
+    required DataType data_type = 1;
+
+    //oneof 里面的值最多出现一个，确定一个后其他的都会被删除掉，不会浪费资源
+    oneof dataBody{
+        Person person = 2;
+        Dog dog = 3;
+        Cat cat = 4;
+    }
+
+}
+
+message Person{
+    optional string name = 1;
+    optional int32 age = 2;
+    optional string address = 3;
+}
+
+message Dog{
+    optional string name = 1;
+    optional int32 age = 2;
+}
+message Cat{
+    optional string name = 1;
+    optional string city = 2;
+}
