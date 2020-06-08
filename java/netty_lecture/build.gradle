@@ -19,7 +19,7 @@ dependencies {
 
     )
     compile (
-            "io.netty:netty-all:4.1.46.Final",
+            "io.netty:netty-all:4.1.50.Final",
             /*日志依赖
             'org.apache.logging.log4j:log4j-api:2.11.1',
             'org.apache.logging.log4j:log4j-core:2.11.1',*/

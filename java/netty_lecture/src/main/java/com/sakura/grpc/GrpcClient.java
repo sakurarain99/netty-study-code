@@ -7,7 +7,6 @@ import io.grpc.stub.StreamObserver;
 
 import java.time.LocalDateTime;
 import java.util.Iterator;
-
 /**
  * @ClassName : GrpcClient
  * @Description : grpc client
@@ -19,6 +18,7 @@ public class GrpcClient {
 
 
     public static void main(String[] args) throws InterruptedException {
+        //usePlaintext()使用纯文本的方式,不加密
         ManagedChannel managedChannel =
                 ManagedChannelBuilder.forTarget("localhost:8899").usePlaintext().build();
         //客户端与服务端交互的对象  server与client通信的对象
@@ -29,8 +29,9 @@ public class GrpcClient {
         //blockingStub是同步的阻塞的，则不会被提供方法
         //获取一个异步的通信对象
         //创建一个支持该服务的所有呼叫类型的新异步存根，不会等待对方响应会一直向下执行
-        StudentServiceGrpc.StudentServiceStub stub = StudentServiceGrpc.newStub(managedChannel);
-/*        //构建消息
+        StudentServiceGrpc.StudentServiceStub stub =
+                StudentServiceGrpc.newStub(managedChannel);
+       //构建消息
         MyRequest request = MyRequest.newBuilder().setUsername("出发，目标彩虹海").build();
         //调用具体方法，接收到响应
         MyResponse response = blockingStub.getRealNameByUsername(request);
@@ -39,7 +40,7 @@ public class GrpcClient {
         System.out.println("--------------------普通请求与响应 结束----------------------");
 
         //返回一个流式的响应就是一个迭代器，每返回一个对象就进入到迭代器中，再返回对象再进入迭代器，以此类推
-        Iterator<StudentResponse> iter =
+/*        Iterator<StudentResponse> iter =
                 blockingStub.getStudentsByAge(StudentRequest.newBuilder().setAge(18).build());
         //iter.hasNext()  还有没有下一个
         while (iter.hasNext()){
@@ -49,7 +50,7 @@ public class GrpcClient {
         }
         System.out.println("-----------------------普通请求 流式响应 结束-------------------");
         //客户端请求一个steam(流式) blockingStub(同步)无法使用 只有使用异步形式
-*/
+ */
         //构造接收服务端信息的方法
 /*        StreamObserver<StudentResponseList> studentResponseListStreamObserver = new StreamObserver<StudentResponseList>() {
             /**
