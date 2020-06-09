@@ -39,16 +39,6 @@ public final class Student {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_sakura_proto_StudentResponseList_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_sakura_proto_StreamRequest_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_sakura_proto_StreamRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_sakura_proto_StreamResponse_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_sakura_proto_StreamResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -64,9 +54,7 @@ public final class Student {
       "ame\030\001 \001(\t\022\013\n\003age\030\002 \001(\005\022\014\n\004city\030\003 \001(\t\"\035\n\016" +
       "StudentRequest\022\013\n\003age\030\001 \001(\005\"Q\n\023StudentRe" +
       "sponseList\022:\n\017studentResponse\030\001 \003(\0132!.co" +
-      "m.sakura.proto.StudentResponse\"%\n\rStream" +
-      "Request\022\024\n\014request_info\030\001 \001(\t\"\'\n\016StreamR" +
-      "esponse\022\025\n\rresponse_info\030\001 \001(\t2\371\002\n\016Stude" +
+      "m.sakura.proto.StudentResponse2\250\002\n\016Stude" +
       "ntService\022R\n\025GetRealNameByUsername\022\033.com" +
       ".sakura.proto.MyRequest\032\034.com.sakura.pro" +
       "to.MyResponse\022Y\n\020GetStudentsByAge\022 .com." +
@@ -74,10 +62,8 @@ public final class Student {
       ".proto.StudentResponse0\001\022g\n\030GetStudentsW" +
       "rapperByAges\022 .com.sakura.proto.StudentR" +
       "equest\032%.com.sakura.proto.StudentRespons" +
-      "eList\"\000(\001\022O\n\006BiTalk\022\037.com.sakura.proto.S" +
-      "treamRequest\032 .com.sakura.proto.StreamRe" +
-      "sponse(\0010\001B\035\n\020com.sakura.protoB\007StudentP" +
-      "\001b\006proto3"
+      "eList\"\000(\001B\035\n\020com.sakura.protoB\007StudentP\001" +
+      "b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -113,18 +99,6 @@ public final class Student {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_sakura_proto_StudentResponseList_descriptor,
         new java.lang.String[] { "StudentResponse", });
-    internal_static_com_sakura_proto_StreamRequest_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_com_sakura_proto_StreamRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_sakura_proto_StreamRequest_descriptor,
-        new java.lang.String[] { "RequestInfo", });
-    internal_static_com_sakura_proto_StreamResponse_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_com_sakura_proto_StreamResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_sakura_proto_StreamResponse_descriptor,
-        new java.lang.String[] { "ResponseInfo", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

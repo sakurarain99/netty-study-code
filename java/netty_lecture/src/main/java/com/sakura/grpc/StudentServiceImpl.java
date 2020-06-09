@@ -3,8 +3,6 @@ package com.sakura.grpc;
 import com.sakura.proto.*;
 import io.grpc.stub.StreamObserver;
 
-import java.util.UUID;
-
 /**
  * @ClassName : StudentServiceImpl
  * @Description : 远程调用的方法的具体实现，实现生成代码中的内部抽象类
@@ -83,39 +81,6 @@ public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBas
                 //返回结果
                 responseObserver.onNext(studentResponseList);
                 //表示处理完成
-                responseObserver.onCompleted();
-            }
-        };
-    }
-
-    @Override
-    public StreamObserver<StreamRequest> biTalk(StreamObserver<StreamResponse> responseObserver) {
-        return new StreamObserver<StreamRequest>() {
-            /**
-             * 客户端发来请求时被调用,每请求一次则被调用一次
-             * @param value 客户端发来的数据
-             */
-            @Override
-            public void onNext(StreamRequest value) {
-                //打印客户端发来的数据
-                System.out.println(value.getRequestInfo());
-
-                //向客户端返回数据
-                responseObserver.onNext(StreamResponse.newBuilder().setResponseInfo(UUID.randomUUID().toString()).build());
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                System.out.println(t.getMessage());
-            }
-
-            /**
-             * 客户端的onCompleted方法被调用时,被调用
-             */
-            @Override
-            public void onCompleted() {
-                //双向的数据流传递,虽然是在两个不同的流中传递互不干扰
-                //但是当一方的流被关闭时另一方也要关闭与之交互的流
                 responseObserver.onCompleted();
             }
         };
