@@ -1,4 +1,4 @@
-package com.sakura.netty.thrift;
+package com.sakura.thrift;
 
 import org.apache.thrift.TException;
 import thrift.generated.DataException;

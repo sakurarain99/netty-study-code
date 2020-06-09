@@ -1,4 +1,4 @@
-package com.sakura.netty.thrift;
+package com.sakura.thrift;
 
 import org.apache.thrift.TProcessorFactory;
 import org.apache.thrift.protocol.TCompactProtocol;
