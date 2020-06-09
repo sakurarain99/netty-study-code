@@ -8,15 +8,16 @@ option java_multiple_files = true;//是否生成多个文件
 
 //定义rpc的方法
 service StudentService{
-    //客户端发出一个普通的请求，服务器的返回一个普通的响应
+    //1.客户端发出一个普通的请求，服务器的返回一个普通的响应
     rpc GetRealNameByUsername(MyRequest) returns (MyResponse);
-    //根据学生的年龄获取与这个年龄相等的学生对象，服务器的以流的形式返回
     //grpc的请求以及响应不能是基本数据类型，必须是一个message类型，不管请求里有几个参数
-    //  他必须是你定义的一个message类型的
+    //他必须是你定义的一个message类型的
+    //2.根据学生的年龄获取与这个年龄相等的学生对象客户端发生一个普通的请求，服务器的以流的形式返回
     rpc GetStudentsByAge(StudentRequest) returns (stream StudentResponse);
-    //请求一个StudentRequest服务器会返回一个StudentResponseList
+    //3.以流式的方式请求一个StudentRequest服务器会返回一个StudentResponseList
     rpc GetStudentsWrapperByAges(stream StudentRequest) returns (StudentResponseList){}
-
+    //4.客户源与服务端都以流式的方式，双向的数据流传递
+    rpc BiTalk(stream StreamRequest) returns (stream StreamResponse);
 }
 
 
@@ -27,6 +28,7 @@ message MyRequest{
 message MyResponse{
     string realname = 2;
 }
+
 message StudentResponse{
     string name = 1;
     int32 age = 2;
@@ -39,4 +41,10 @@ message StudentResponseList{
     repeated StudentResponse studentResponse = 1;
 }
 
+message StreamRequest{
+    string request_info = 1;
+}
 
+message StreamResponse{
+    string response_info = 1;
+}
